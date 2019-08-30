@@ -25,16 +25,31 @@
         		});        		
         	}
 
+        	function validate()
+        	{
+        		var item = $('input[name=item]').val();
+
+        		if(item == '')
+        		{
+        			alert('You need to provide an item detail.');
+        			return false;
+        		}
+
+        		return true
+        	}
+
         	function todoCreate()
         	{
-        		var url  = '{{ URL::to("todo") }}';
-        		var formdata = $('form').serialize();
+        		if(validate()){
+	        		var url  = '{{ URL::to("todo") }}';
+	        		var formdata = $('form').serialize();
 
-        		$.post(url, formdata, function(r) {
-        			if(r.id){
-        				appendList(r);
-        			}
-        		});
+	        		$.post(url, formdata, function(r) {
+	        			if(r.id){
+	        				appendList(r);
+	        			}
+	        		});        			
+        		}
         	}
 
         	function appendList(item)
