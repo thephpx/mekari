@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
-        <div class="container">
+        <div class="container py-5">
             @yield('content')
         </div>
 
