@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', 'FrontController');
+Route::get('/', 'FrontController@index');
 
 Route::resource('todo', 'TodoController');

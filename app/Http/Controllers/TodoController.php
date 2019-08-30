@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use App\Http\Requests;
+use App\Todo;
 
 class TodoController extends Controller
 {
@@ -16,6 +18,9 @@ class TodoController extends Controller
     public function index()
     {
         //
+        $todo = Todo::all();
+
+        return Response()->json($todo);
     }
 
     /**
@@ -37,6 +42,11 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         //
+        $todo = new Todo();
+        $todo->item = $request->item;
+        $todo->save();
+
+        return Response()->json($todo);
     }
 
     /**
@@ -82,5 +92,9 @@ class TodoController extends Controller
     public function destroy($id)
     {
         //
+        $todo = Todo::find($id);
+        $todo->delete();
+
+        return response()->json(['result'=>true]);
     }
 }
